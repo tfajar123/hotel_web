@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HotelController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +18,9 @@ Route::get('/', function () {
     return inertia('Index');
 });
 
-Route::resource('posts', \App\Http\Controllers\PostController::class);
-Route::resource('kamar', \App\Http\Controllers\KamarController::class);
-Route::resource('booking', \App\Http\Controllers\BookingController::class);
+
+Route::get('/booking', [HotelController::class, 'showAll'])->name('bookings.showAll');
+Route::get('/booking/{id}', [HotelController::class, 'show'])->name('bookings.show');
+Route::post('/booking', [HotelController::class, 'store'])->name('bookings.store');
+Route::put('/booking/{id}', [HotelController::class, 'update'])->name('bookings.update');
+Route::delete('/booking/{id}', [HotelController::class, 'delete'])->name('bookings.delete');
