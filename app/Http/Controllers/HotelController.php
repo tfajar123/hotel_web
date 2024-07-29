@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Booking;
 use App\Models\Room;
 use Carbon\Carbon;
+use Inertia\Inertia;
 
 class HotelController extends Controller
 {
@@ -14,8 +15,8 @@ class HotelController extends Controller
         // Validasi input
         $request->validate([
             'room_id' => 'required|exists:rooms,id',
-            'checkin' => 'required|date',
-            'checkout' => 'required|date|after:checkin',
+            'check_in' => 'required|date',
+            'check_out' => 'required|date|after:check_in',
             'name' => 'required|string',
             'email' => 'required|email',
             'phone_number' => 'required|string',
@@ -25,9 +26,9 @@ class HotelController extends Controller
         $room = Room::findOrFail($request->room_id);
 
         // Hitung jumlah malam
-        $checkin = Carbon::parse($request->checkin);
-        $checkout = Carbon::parse($request->checkout);
-        $totalNights = $checkout->diffInDays($checkin);
+        $check_in = Carbon::parse($request->check_in);
+        $check_out = Carbon::parse($request->check_out);
+        $totalNights = $check_out->diffInDays($check_in);
 
         // Hitung total harga
         $totalPrice = $totalNights * $room->price;
@@ -35,8 +36,8 @@ class HotelController extends Controller
         // Simpan data pemesanan ke dalam database
         $booking = new Booking([
             'room_id' => $room->id,
-            'check_in' => $request->checkin,
-            'check_out' => $request->checkout,
+            'check_in' => $request->check_in,
+            'check_out' => $request->check_out,
             'name' => $request->name,
             'email' => $request->email,
             'phone_number' => $request->phone_number,
@@ -56,8 +57,7 @@ class HotelController extends Controller
     public function showAll()
     {
         $bookings = Booking::with('room')->get();
-        return response()->json([
-            'message' => 'All bookings retrieved successfully',
+        return Inertia::render('Booking/BookingIndex', [
             'bookings' => $bookings
         ]);
     }
@@ -72,8 +72,8 @@ class HotelController extends Controller
     {
         $request->validate([
             'room_id' => 'required|exists:rooms,id',
-            'checkin' => 'required|date',
-            'checkout' => 'required|date|after:checkin',
+            'check_in' => 'required|date',
+            'check_out' => 'required|date|after:check_in',
             'name' => 'required|string',
             'email' => 'required|email',
             'phone_number' => 'required|string',
@@ -83,9 +83,9 @@ class HotelController extends Controller
         $room = Room::findOrFail($request->room_id);
 
         // Hitung jumlah malam
-        $checkin = Carbon::parse($request->checkin);
-        $checkout = Carbon::parse($request->checkout);
-        $totalNights = $checkout->diffInDays($checkin);
+        $check_in = Carbon::parse($request->check_in);
+        $check_out = Carbon::parse($request->check_out);
+        $totalNights = $check_out->diffInDays($check_in);
 
         // Hitung total harga
         $totalPrice = $totalNights * $room->price;
@@ -94,8 +94,8 @@ class HotelController extends Controller
         $booking = Booking::findOrFail($id);
         $booking->update([
             'room_id' => $room->id,
-            'check_in' => $request->checkin,
-            'check_out' => $request->checkout,
+            'check_in' => $request->check_in,
+            'check_out' => $request->check_out,
             'name' => $request->name,
             'email' => $request->email,
             'phone_number' => $request->phone_number,

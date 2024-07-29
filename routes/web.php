@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HotelController;
+use App\Models\Room;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,7 +16,27 @@ use App\Http\Controllers\HotelController;
 */
 
 Route::get('/', function () {
-    return inertia('Index');
+
+    $rooms = Room::latest()->take(3)->get();
+
+    return inertia('Index', ['rooms' => $rooms]);
+});
+Route::get('/about', function(){
+
+    return inertia('About');
+});
+Route::get('/services', function(){
+
+    return inertia('Services');
+});
+
+Route::get('/rooms', function(){
+    $rooms = Room::latest()->take(3)->get();
+    return inertia('Rooms', ['rooms' => $rooms]);
+});
+
+Route::get('/contact', function(){
+    return inertia('Contact');
 });
 
 

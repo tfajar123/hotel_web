@@ -79,60 +79,31 @@ function Layout({ children }) {
                                     >
                                         <div className="navbar-nav mr-auto py-0">
                                             <a
-                                                href="index.html"
+                                                href="/"
                                                 className="nav-item nav-link active"
                                             >
                                                 Home
                                             </a>
                                             <a
-                                                href="about.html"
+                                                href="/about"
                                                 className="nav-item nav-link"
                                             >
                                                 About
                                             </a>
                                             <a
-                                                href="service.html"
+                                                href="/services"
                                                 className="nav-item nav-link"
                                             >
                                                 Services
                                             </a>
                                             <a
-                                                href="room.html"
+                                                href="/rooms"
                                                 className="nav-item nav-link"
                                             >
                                                 Rooms
                                             </a>
-                                            <div className="nav-item dropdown">
-                                                <a
-                                                    href="#"
-                                                    className="nav-link dropdown-toggle"
-                                                    data-bs-toggle="dropdown"
-                                                >
-                                                    Pages
-                                                </a>
-                                                <div className="dropdown-menu rounded-0 m-0">
-                                                    <a
-                                                        href="booking.html"
-                                                        className="dropdown-item"
-                                                    >
-                                                        Booking
-                                                    </a>
-                                                    <a
-                                                        href="team.html"
-                                                        className="dropdown-item"
-                                                    >
-                                                        Our Team
-                                                    </a>
-                                                    <a
-                                                        href="testimonial.html"
-                                                        className="dropdown-item"
-                                                    >
-                                                        Testimonial
-                                                    </a>
-                                                </div>
-                                            </div>
                                             <a
-                                                href="contact.html"
+                                                href="/contact"
                                                 className="nav-item nav-link"
                                             >
                                                 Contact
@@ -153,7 +124,7 @@ function Layout({ children }) {
                     {/* Header End */}
                 </div>
 
-                <main className="container mt-5">{children}</main>
+                {children}
                 <div>
                     {/* Footer Start */}
                     <div
