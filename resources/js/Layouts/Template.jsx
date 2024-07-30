@@ -85,6 +85,12 @@ function Layout({ children }) {
                                                 Home
                                             </a>
                                             <a
+                                                href="/booking"
+                                                className="nav-item nav-link"
+                                            >
+                                                Booking
+                                            </a>
+                                            <a
                                                 href="/about"
                                                 className="nav-item nav-link"
                                             >

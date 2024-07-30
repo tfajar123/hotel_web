@@ -62,10 +62,19 @@ class HotelController extends Controller
         ]);
     }
 
+    public function edit($id) {
+        $booking = Booking::with('room')->findOrFail($id);
+        return Inertia::render('Booking/BookingEdit', [
+            'booking' => $booking
+        ]);
+    }
+
     public function show($id)
     {
         $booking = Booking::with('room')->findOrFail($id);
-        return response()->json($booking);
+        return Inertia::render('Booking/BookingShow', [
+            'booking' => $booking
+        ]);
     }
 
     public function update(Request $request, $id)
@@ -77,8 +86,11 @@ class HotelController extends Controller
             'name' => 'required|string',
             'email' => 'required|email',
             'phone_number' => 'required|string',
+            'payment_status' => 'nullable|boolean',
         ]);
 
+        // Ambil data pemesanan dari database
+        $booking = Booking::findOrFail($id);
         // Ambil data kamar dari database
         $room = Room::findOrFail($request->room_id);
 
@@ -91,7 +103,6 @@ class HotelController extends Controller
         $totalPrice = $totalNights * $room->price;
 
         // Simpan data pemesanan ke dalam database
-        $booking = Booking::findOrFail($id);
         $booking->update([
             'room_id' => $room->id,
             'check_in' => $request->check_in,
@@ -104,9 +115,7 @@ class HotelController extends Controller
             'payment_status' => $request->payment_status ?? $booking->payment_status,
         ]);
 
-        return response()->json([
-            'message' => 'Reservation successfully updated',
-            'booking' => $booking], 200);
+        return redirect()->route('bookings.showAll')->with('message', 'Reservation successfully updated');
     }
 
     public function delete($id)
@@ -114,6 +123,7 @@ class HotelController extends Controller
         $booking = Booking::findOrFail($id);
         $booking->delete();
 
-        return redirect()->route('hotel.reservation');
+        return redirect()->route('bookings.showAll')->with('message', 'Reservation successfully deleted');
     }
+
 }

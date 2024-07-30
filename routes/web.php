@@ -43,5 +43,6 @@ Route::get('/contact', function(){
 Route::get('/booking', [HotelController::class, 'showAll'])->name('bookings.showAll');
 Route::get('/booking/{id}', [HotelController::class, 'show'])->name('bookings.show');
 Route::post('/booking', [HotelController::class, 'store'])->name('bookings.store');
+Route::get('/booking/{id}/edit', [HotelController::class, 'edit'])->name('bookings.edit');
 Route::put('/booking/{id}', [HotelController::class, 'update'])->name('bookings.update');
 Route::delete('/booking/{id}', [HotelController::class, 'delete'])->name('bookings.delete');
