@@ -26,13 +26,13 @@ function Layout({ children }) {
                                         <div className="h-100 d-inline-flex align-items-center py-2 me-4">
                                             <i className="fa fa-envelope text-primary me-2" />
                                             <p className="mb-0">
-                                                info@example.com
+                                                info@hotelier.com
                                             </p>
                                         </div>
                                         <div className="h-100 d-inline-flex align-items-center py-2">
                                             <i className="fa fa-phone-alt text-primary me-2" />
                                             <p className="mb-0">
-                                                +012 345 6789
+                                                +022 345 67890
                                             </p>
                                         </div>
                                     </div>
@@ -115,13 +115,13 @@ function Layout({ children }) {
                                                 Contact
                                             </a>
                                         </div>
-                                        <a
+                                        {/* <a
                                             href="https://htmlcodex.com/hotel-html-template-pro"
                                             className="btn btn-primary rounded-0 py-4 px-md-5 d-none d-lg-block"
                                         >
                                             Premium Version
                                             <i className="fa fa-arrow-right ms-3" />
-                                        </a>
+                                        </a> */}
                                     </div>
                                 </nav>
                             </div>
@@ -147,17 +147,7 @@ function Layout({ children }) {
                                             </h1>
                                         </a>
                                         <p className="text-white mb-0">
-                                            Download{" "}
-                                            <a
-                                                className="text-dark fw-medium"
-                                                href="https://htmlcodex.com/hotel-html-template-pro"
-                                            >
-                                                Hotelier – Premium Version
-                                            </a>
-                                            , build a professional website for
-                                            your hotel business and grab the
-                                            attention of new visitors upon your
-                                            site’s launch.
+                                            Hotelier is a website that offers accommodation services for guests.
                                         </p>
                                     </div>
                                 </div>
@@ -256,7 +246,7 @@ function Layout({ children }) {
                                     <div className="col-md-6 text-center text-md-start mb-3 mb-md-0">
                                         ©{" "}
                                         <a className="border-bottom" href="#">
-                                            Your Site Name
+                                            Hotelier
                                         </a>
                                         , All Right Reserved.
                                         {/*/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. *** /*/}
